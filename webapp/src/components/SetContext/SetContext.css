@@ -1,0 +1,125 @@
+.context-submit {
+    background-color: #4a67ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+.context-submit:hover {
+    background-color: #3651f0;
+}
+.context-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.context-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+.context-container.closing {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+.context-overlay {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    padding-top: 10px;
+    animation: slideUp 0.3s ease-out forwards;
+}
+.context-overlay.closing {
+    animation: slideDown 0.3s ease-out forwards;
+
+}
+
+.context-header {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.context-textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.header-container {
+    display: flex;
+    position: relative;
+    height: 53px;
+    justify-content: center;
+}
+
+.context-close {
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    position: absolute;
+    right: 0;
+    margin-top: 5px;
+}
+.context-close:hover {
+    color: #000;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%); /* Start from below the screen */
+    }
+    to {
+        transform: translateY(0); /* End at its normal position */
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0); /* Start at its normal position */
+    }
+    to {
+        transform: translateY(250%); /* End below the screen */
+    }
+}
