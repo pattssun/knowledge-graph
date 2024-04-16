@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <svg></svg>
+    <script type="module">
+        // test localhost api
+        // send post request to localhost and return response
+        let res = await fetch('http://localhost:5000/api/setcontext', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                context: `
+The sun is about to act like your college roommate freshman year—it’s getting totally blacked out on a Monday afternoon.
+
+A total solar eclipse will be visible across North America today, an event that won’t take place in the US again until 2044. The path of totality will cut through Middle America like a country music tour bus, allowing 30+ million people from Texas to Maine to see the sun, moon, and Earth align perfectly in the early afternoon.
+
+Bigger than the Super Bowl and Taylor Swift
+Americans are treating the eclipse like the YOLO moment it is and spending big: It’s projected to deliver a $6 billion infusion to the US economy—not far off the combined impact of Taylor Swift’s Eras Tour ($5.7 billion) and the 2023 Super Bowl ($1.3 billion). Millions are making a vacation out of it, shelling out for flights, hotels, and tickets to viewing parties along the path of totality. And cities big and small are at full capacity.
+
+Indianapolis is preparing for 500,000 visitors—more than 7x the attendance of the Super Bowl it hosted in 2012.
+Niagara Falls expects to host up to 1 million people for the eclipse. It typically gets 14 million visitors…throughout the entire year.
+Brands are also cashing in: Companies are rolling out eclipse-themed promotions, such as Delta’s two flights that track the path of totality.
+
+Scientists are amped
+The people most excited about the eclipse are scientists, who for centuries have conducted experiments that can only be done in syzygy. While the moon is blacking out the sun for several minutes, they’ll be scrambling to gather data about the solar system and also observe how animals behave when day suddenly turns to night. Did you know that helium was discovered during the 1868 eclipse?
+
+Enjoy it while you can. With the moon moving away from Earth at a rate of 1.5 inches per year, total eclipses will eventually become a thing of the past in about 600 million years, according to Johns Hopkins professor Sabine Stanley.
+`
+            })
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log(data);
+        });
+
+        let answer = await fetch('http://localhost:5000/api/query', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                question: 'What is the significance of the solar eclipse?'})
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log(data);
+        });
+    </script>
+</body>
+</html>
