@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SetContext.css';
 
-export default function SetContext({ context, setContext }) {
+export default function SetContext({ context, setContext, setKG }) {
     const [isOpen, setIsOpen] = useState(false);
     const [working, setWorking] = useState(false);
     const [closing, setClosing] = useState(false);
@@ -35,7 +35,8 @@ export default function SetContext({ context, setContext }) {
 
         if (res) {
             if (res['success']) {
-                console.log('Successfully set context:', context);
+                console.log('KG:', res['kg']);
+                setKG(res['kg']);
               } else {
                 alert(res['error'])
               }
@@ -49,7 +50,7 @@ export default function SetContext({ context, setContext }) {
 
     return (
         <>
-        <button className="context-submit" onClick={() => setIsOpen(true)}>Set Context</button>
+        <button className="context-submit" id="setcontext-button" onClick={() => setIsOpen(true)}>Set Context</button>
         {isOpen == true && 
         <div className={`context-container ${closing ? 'closing' : ''}`}>
             <div className={`context-overlay ${closing ? 'closing' : ''}`}>

@@ -4,3 +4,23 @@
   padding: 2rem;
   text-align: center;
 }
+
+.App {
+  position: relative;
+  justify-content: center;
+}
+
+#setcontext-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  z-index: 200;
+  margin-top: 10px;
+}
+
+.kg-svg {
+  position: relative;
+}
