@@ -38,10 +38,11 @@ export default function KG({ kg }) {
             const color = d3.scaleOrdinal(d3.schemeCategory10);
 
             const simulation = d3.forceSimulation(nodes)
-                .force("link", d3.forceLink(links).id(d => d.id).distance(300))
+                .force("link", d3.forceLink(links).id(d => d.id).distance(250))
                 .force("charge", d3.forceManyBody())
                 .force("x", d3.forceX(width / 2))
                 .force("y", d3.forceY(height / 2));
+
 
             const g = svg.append("g");
 
@@ -73,7 +74,8 @@ export default function KG({ kg }) {
                 .call(drag(simulation));
 
             node.append("circle")
-                .attr("r", d => 30 + Math.sqrt((d.degree - 1)) * 30)  // Base radius + scaled by sqrt of degree
+                // .attr("r", 5)
+                .attr("r", d => 30 + Math.sqrt((d.degree - 1)) * 10)  // Base radius + scaled by sqrt of degree
                 .attr("fill", d => color(d.id));
 
             node.append("text")
@@ -100,6 +102,7 @@ export default function KG({ kg }) {
                 linkText.attr("x", d => (d.source.x + d.target.x) / 2)
                     .attr("y", d => (d.source.y + d.target.y) / 2);
             });
+            
         }
     }, [kg]); // Include kg in the dependency array to update graph when kg changes
 
@@ -126,6 +129,6 @@ export default function KG({ kg }) {
             .on("drag", dragged)
             .on("end", dragended);
     }
-
+    
     return <svg className="kg-svg" ref={svgRef} width="100%" height="750px" style={{ border: 'thin solid lightgray', borderRadius: '5px'}}></svg>;
 }

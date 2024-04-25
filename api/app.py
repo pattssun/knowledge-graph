@@ -15,7 +15,9 @@ def set_context():
     global context, kgraph
     success = True
     context = request.json['context']
-    kgraph = kg.createKG(context)
+    # coref = kg.coref(context)
+    processed = kg.process_cosine(context)
+    kgraph = kg.createKG(processed)
     print(kgraph)
     if type(kgraph) != list:
         success = False
@@ -28,7 +30,8 @@ def handle_query():
     question = request.json['question']
     if context == "" or kgraph == "":
         return jsonify({'success': False, 'error': 'Context not set'}), 400
-    res = kg.query(question, kgraph)
+    res = kg.cosine_query(question, kgraph)
+    print(res)
     return jsonify({'success': True, 'answer': res}), 200
 
 if __name__ == '__main__':
